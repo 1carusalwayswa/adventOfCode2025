@@ -15,16 +15,10 @@ data = puzzle.input_data
 # How to test with example data
 test_data = puzzle.examples[0].input_data
 
-
-# data = "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82"
-# print(test_data)
-# separate lines from data using ','
 lines = data.replace('\n', '').split(',')
 
-print(lines)
 a_ans = 0
 b_ans = 0
-max_len = 0
 
 def check_same_by_len(str_num:str, length:int) -> bool:
     if length == 0:
