@@ -14,7 +14,7 @@ data = puzzle.input_data
 # How to test with example data
 test_data = puzzle.examples[0].input_data
 
-lines = test_data.split('\n')
+lines = data.split('\n')
 
 a_ans = 0
 b_ans = 0
@@ -38,7 +38,7 @@ def get_max_in_line_by_len(line:str, length:int) -> int:
         res = res * 10 + max_num
         cur_len += 1
     # print("----")
-    print(res)
+    # print(res)
     return res
 
 for line in lines:
@@ -47,5 +47,5 @@ for line in lines:
         
 print(a_ans)
 print(b_ans)
-# puzzle.answer_a = a_ans
-# puzzle.answer_b = b_ans
+puzzle.answer_a = a_ans
+puzzle.answer_b = b_ans
