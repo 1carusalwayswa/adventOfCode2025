@@ -1,6 +1,9 @@
 # 3   00:13:24   00:31:42
 '''
 someone has crazy finish time, will learn it later.
+update: figured it out, use recursion, the depth's limitation of python is around 1000.
+it is pretty easy to do recussion in python compare C++, 
+which for the same recursion, the depth only just be around 30.
 '''
 
 import functools
