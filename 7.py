@@ -19,56 +19,40 @@ test_data = puzzle.examples[0].input_data
 # learned from others
 lines = data.split('\n')
 grid = [list(line) for line in lines]
+# create a vis array for grid
+vis = [[False] * len(grid[0]) for _ in range(len(grid))]
 
 a_ans = 0
 b_ans = 0
 
-def dfs_a(i:int, j:int) -> None:
-    global a_ans
-    if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]):
-        return
-    
-    if grid[i][j] == '|':
-        return
-    
-    if grid[i][j] != '^':
-        grid[i][j] = '|'
-        dfs_a(i + 1, j)
-        return
-    
-    if grid[i][j] == '^':
-        a_ans += 1
-        dfs_a(i + 1, j - 1)
-        dfs_a(i + 1, j + 1)
-
-for i in range(len(grid)):
-    flag = False
-    for j in range(len(grid[0])):
-        if grid[i][j] == 'S':
-            dfs_a(i, j)
-            flag = True
-            break
-    if flag:
-        break
-
-# reset grid
-grid = [list(line) for line in lines]
-
 @cache
-def dfs_b(i:int, j:int) -> None:
+def dfs(i:int, j:int) -> int:
     if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]):
         return 1
     
-    if grid[i][j] != '^':
-        return dfs_b(i + 1, j)
+    if vis[i][j]:
+        return 0
     
-    return dfs_b(i + 1, j - 1) + dfs_b(i + 1, j + 1)
+    if grid[i][j] != '^':
+        vis[i][j] = True
+        res = dfs(i + 1, j)
+        vis[i][j] = False
+        return res
+    
+    global a_ans
+    a_ans += 1
+    
+    vis[i][j] = True
+    res_l = dfs(i + 1, j - 1)
+    res_r = dfs(i + 1, j + 1)
+    vis[i][j] = False
+    return res_l + res_r
 
 for i in range(len(grid)):
     flag = False
     for j in range(len(grid[0])):
         if grid[i][j] == 'S':
-            b_ans = dfs_b(i, j)
+            b_ans = dfs(i, j)
             flag = True
             break
     if flag:
