@@ -75,6 +75,8 @@ for num in num_list:
 # t1 = time.perf_counter()
 last_r = -1
 for l, r in sorted(range_list):
+    # means this interval is inside the last merged interval
+    # so skip
     if r <= last_r:
         continue
     l = max(l, last_r + 1)
@@ -84,5 +86,5 @@ for l, r in sorted(range_list):
 
 print(a_ans)
 print(b_ans)
-# puzzle.answer_a = a_ans
-# puzzle.answer_b = b_ans
+puzzle.answer_a = a_ans
+puzzle.answer_b = b_ans
