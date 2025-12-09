@@ -43,7 +43,7 @@ def is_rectangle_fully_inside(x1, y1, x2, y2, polygon):
     
     rectangle = box(x1, y1, x2, y2)
     
-    return polygon.contains(rectangle) or polygon.covers(rectangle)
+    return polygon.covers(rectangle)
 
 max_area = 0
 for i in range(len(tiles)):
