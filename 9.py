@@ -30,7 +30,7 @@ for i in range(len(tiles)):
     for j in range(len(tiles)):
         x1, y1 = tiles[i]
         x2, y2 = tiles[j]
-        area = abs(x1 - x2 + 1) * abs(y1 - y2 + 1)
+        area = (abs(x1 - x2) + 1) * (abs(y1 - y2) + 1)
         if area > max_area:
             max_area = area
 a_ans = max_area
