@@ -59,7 +59,7 @@ def count_paths(start, end):
         return memo[start]
     
     total = 0
-    for neighbor in adjacency_list.get(start, []):
+    for neighbor in adjacency_list[start]:
         total += count_paths(neighbor, end)
     
     memo[start] = total
